@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		https://jsfiddle.net/yyx990803/okv0rgrk/
+		<div id="example">
+<!--<input v-on:keyup.13="submit">-->
+	<input v-on:click="submit" v-on:keyup.13="clk">
+<p>{{name}}</p>
+</div>
+<script>
+	var vm = new Vue({
+  el: '#example',
+  data: {
+    name: 'Vue.js'
+  },
+  // 在 `methods` 对象中定义方法
+ methods: {
+  submit: function (event) {
+    this.name=event.target.value;
+  },
+clk:function(event) {
+    this.name=event.target.tagName;
+}
+}
+})
+	
+</script>
+		
+	
+		
+		
+		
+	使用 v-on 有几个好处：
+
+扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。
+
+因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。
+
+当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。
+	</body>
+</html>
