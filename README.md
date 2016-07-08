@@ -63,3 +63,5 @@ edit sjdksdkmckdm
 
 edit sjdksdkmckdm
 注意 debounce 参数不会延迟 input 事件：它延迟“写入”底层数据。因此在使用 debounce 时应当用 vm.$watch() 响应数据的变化。若想延迟 DOM 事件，应当使用 debounce 过滤器。
+
+http://cn.vuejs.org/guide/forms.html#绑定-value
