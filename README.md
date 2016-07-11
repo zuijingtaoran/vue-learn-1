@@ -1,3 +1,6 @@
+
+http://router.vuejs.org/zh-cn/index.html
+
 # vue-learn-1
 
 绑定 value

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body><ul id="example">
+		<example></example></ul>
+		<script>
+
+	
+				
+			
+		
+		var Example = Vue.extend({
+  template: '	<li v-for="item in items">{{ item.message }}+{{ item.id }}</li>',
+data: function () {
+    return {
+//    message: 'Hello Vue.js!'
+items: [{message: 'Foo',id:12	}, {message: 'aBar',id:13}
+, {message: 'sdar',id:14}
+]
+    }
+}
+
+})
+
+// 将该组件注册为 <example> 标签
+Vue.component('example', Example)
+new Vue({
+  el: '#example'
+})
+</script>
+		
+	</body>
+</html>

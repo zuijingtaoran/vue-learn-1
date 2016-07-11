@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+
+		<script src="js/vue.js"></script>
+	</head>
+
+	<body>
+	
+		
+		<div id="example" v-demo="args: message" v-on="click:onClick">
+			Vue.js 允许自定义全局指令
+			
+		</div>
+		<script>
+			Vue.directive('demo', {
+    acceptStatement: true,
+    bind: function(){
+        this.el.style.cssText = 'color: red; background: #666;';
+    },
+    update: function(newVal, oldVal){
+        this.el = 'name = ' + this.name + '<br/>' + 
+            'arg = ' + this.arg + '<br/>' + 
+            'expression= ' + this.expression+ '<br/>';
+        console.log(this.vm.$data);
+        console.log(this.el === this.vm.$el);
+    }
+});
+var demo = new Vue({
+    el: '#example',
+    data: {
+        message: 'hello world!'
+    },
+    methods: {
+        onClick: function(){
+            // custom directive update will be called.
+            this.$data.message = 'hahaha!';
+        }
+    }
+});
+		
+		
+//		Vue.directive(id, {
+//  bind: function(){
+//  // 仅在初始化绑定元素时调用
+//  },
+//  update: function(newVal, oldVal){
+//  // 初始化时调用一次，以后每次数据变化，就被调用
+//  },
+//  unbind: function(){
+//  // 仅在指令解绑时被调用
+//  }
+//});
+		
+		
+		</script>
+
+	</body>
+
+</html>

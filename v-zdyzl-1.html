@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+
+		<script src="js/vue.js"></script>
+	</head>
+
+	<body>
+	
+		
+		<div id="example">
+    <p>{{ message }}</p>
+    <input type='text' v-model="message | twoWays"></div>
+</div>
+<script>
+Vue.filter('twoWays', {
+    read: function(val){
+        return 'read ' + val;
+    },
+    write: function(newVal, oldVal){
+        console.log(newVal, oldVal);
+        return ' write'+newVal;
+    }
+});
+
+var demo = new Vue({
+    el: '#example',
+    data: {
+        message: 'hello'
+    }
+});
+</script>
+	</body>
+
+</html>
