@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js" ></script>
+		
+	</head>
+	<body>
+		<div id="app">    
+    <ul>
+        <li v-on:click="tab('form1')">tab1</li>
+        <li v-on:click="tab('form2')">tab2</li>
+    </ul>
+    <div>
+        <my-component :formdata.sync="formData"></my-component>
+    </div>
+    <script type="text" id="tpl">
+        <p>{{formdata.message}}</p>
+        <label>name:<input type="text" v-model="formdata.name"></label>
+        <label>city:<input type="text" v-model="formdata.city"></label>
+        <label>
+            <input type="checkbox" v-model="formdata.checked">
+            {{ formdata.checked }}
+        </label>
+    </script>
+</div>
+<script>
+	var tpl =  document.querySelector('#tpl').innerHTML;
+        var MyComponent = Vue.extend({
+            props: ['formdata'],
+            template: tpl
+        });
+        var demo = new Vue({
+            el: '#app',
+            data: {
+                form1: {
+                    name: '',
+                    city: '',
+                    checked: false,
+                    message: '这个是form1'
+                },
+                form2: {
+                    name: '',
+                    city: '',
+                    checked: false,
+                    message: '这个是form2' 
+                },
+                formData: {}
+            },
+            created: function () {
+                this.formData = this.form1;
+            },
+            components: {
+                'my-component' : MyComponent
+            },
+            methods: {
+                tab: function(form){
+                    this.formData = this[form];
+                    this[form].checked = false;
+                }
+            }
+        });
+</script>
+		
+		
+	</body>
+</html>
