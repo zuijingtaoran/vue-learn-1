@@ -24,50 +24,47 @@ http://cn.vuejs.org/guide/list.html#template-v-for
 
 		<script>
 		//var obj=[{"id":1,"author":"曹雪芹","name":"红楼梦","price":32},{"id":2,"author":"施耐庵","name":"水浒传","price":30},{"id":"3","author":"罗贯中","name":"三国演义","price":24},{"id":4,"author":"吴承恩","name":"西游记","price":20}];
-	var obj;
-	window.onload=function(){
-			fz();
-		}
-		
-		function fz(){
- new Vue({
-				el: '#example-1',
-				
-				ready: function() {
-        this.$http.get('js/tt.json', function(data) {
-            this.$set('items', data);
-       
-        }).error(function(data, status, request) {
-            console.log('fail' + status + "," + request);
-        })
-    },
-				data: {
-					items: ''//[{author: 'coo'}, {author: 'car'}]
+	window.onload = function() {
+		fz();
+	}
+
+	function fz() {
+		new Vue({
+			el: '#example-1',
+
+			ready: function() {
+				this.$http.get('js/tt.json', function(data) {
+					this.$set('items', data);
+
+				}).error(function(data, status, request) {
+					console.log('fail' + status + "," + request);
+				})
+			},
+			data: {
+				items: ''
+			},
+			computed: {
+				sum: function() {
+					return this.items;
+				}
+			},
+			methods: {
+				ck: function() {
+					this.$http.get('js/t1.json', function(data) {
+
+						this.items = data;
+						this.sum;
+					})
+
 				},
-				computed: {
-        sum:function(){this.items=obj;return this.items;}
-				},
-    methods: {
-        ck: function(){
-        	this.$http.get('js/t1.json', function(data) {
-        		obj=data;
-        		
-        		this.sum;
-        	})
-       
-        	
-        	
-        }
-        ,
-        del:function(item){
-        	alert();
-        	this.items.$remove(item);
-        }
-    
-    }
-			})}
-	
-		</script>
+				del: function(item) {
+					alert();
+					this.items.$remove(item);
+				}
+
+			}
+		})
+	}</script>
 		
 		
 

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jiema0505.js" ></script>
+		<style type="text/css">
+			html, body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  
+}
+textarea{ position: relative; left: 20px; top: 20px;
+ width: 300px; height: 600px; border-radius:5px;}
+ #showbox{ position: absolute;left: 340px;top: 20px; 
+ height: 600px; width: 600px; background:#ffc;}
+
+code {
+ background:  #fc9; border-radius: 2px;
+}
+button{position: relative;}
+			
+		</style>
+		<script src="js/vue.js"></script>
+		<script src="js/vue_res.js"></script>
+		<script src="js/markdown.min.js"></script>
+	</head>
+	<body>
+		<div id="editor">
+  <textarea v-model="input" debounce="300">
+  	{{init_data}}
+<!--#Hello World!
+##test
+###test2
+test `this`page
++ item1
++ item2
++ item3
+
+[Google](http://google.com)
+~~~~{python}
+print 'hello world'
+function（）{
+
+}
+~~~~-->
+  	
+  </textarea>
+  <div id='showbox' v-html="input | marked"></div>
+  <button v-on:click="sh">ShowHTML</button>
+</div>
+
+
+		<script>
+		var m=new ma();
+			new Vue({
+  el: '#editor',
+  ready: function() {
+				this.$http.get('js/mb.txt', function(data) {
+					this.$set('input', m.jm(data));
+
+				}).error(function(data, status, request) {
+					console.log('fail' + status + "," + request);
+				})
+			},
+  data: {
+    input: ''
+  },
+  filters: {
+    marked: marked
+  }
+  ,
+			methods: {
+				
+				sh: function() {
+				alert(document.getElementById('showbox').innerHTML+'\r\n===\r\n'+document.getElementById('showbox').innerText);
+				
+					
+				}
+
+			}
+})
+		
+		
+		</script>
+	</body>
+</html>
