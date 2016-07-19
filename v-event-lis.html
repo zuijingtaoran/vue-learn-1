@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="app">
+  <demo ></demo>
+  <demo @listener=listener></demo>
+</div>
+		<script>
+			Vue.component('demo', {
+	template: "<button @click=dispatch>btn</button>",
+	
+//	dispatch
+
+//派发事件。首先在实例上触发该事件，默认情况下将会停止冒泡传播，但如果 $emit 
+//返回的 shouldPropagate 为 true，则该事件会继续沿父链向上传播，即在父组件继续向上派发事件。
+
+	methods: {
+  	dispatch: function(){
+    	this.$dispatch('listener')
+    }
+  }
+})
+
+new Vue({
+	el: "#app",
+  methods: {
+  	listener: function(){
+			alert("为指令绑定的自定定义事件")
+    }
+  },
+  events: {
+  	listener: function(){
+    	alert('派发出来父组件的自定义事件监听')
+    }
+  }
+})
+			
+			
+		</script>
+	</body>
+</html>

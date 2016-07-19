@@ -18,6 +18,9 @@
 		</style>
 	</head>
 	<body>
+		<iframe style="width: 550px; height: 200px; display: none;" 
+			src="http://jsfiddle.net/yujg/kvvurw98/embedded/result%2Chtml%2Cjs%2Ccss/" 
+			allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 		<canvas width="1366" height="611"></canvas>
 		<script>
 			
@@ -39,11 +42,13 @@
             c.width = w*pr
             c.height = h*pr
             x.scale(pr, pr)
-            x.globalAlpha = 0.6
+            x.globalAlpha = 0.3
             function i(){
+            	
                 x.clearRect(0,0,w,h)
                 q=[{x:0,y:h*.7+f},{x:0,y:h*.7-f}]
                 while(q[1].x<w+f) d(q[0], q[1])
+                setTimeout('i()',1200)
             }
             function d(i,j){   
                 x.beginPath()
@@ -65,7 +70,7 @@
             }
             document.onclick = i
             document.ontouchstart = i
-            i()
+          i()
         
 			
 			
